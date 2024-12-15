@@ -11,7 +11,6 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [index, setIndex] = useState(0);
   const [hoveredCharacter, setHoveredCharacter] = useState(null);
-  //p
 
   useEffect(() => {
     async function getCharacters() {
