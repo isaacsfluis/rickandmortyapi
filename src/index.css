@@ -1,0 +1,6 @@
+body {
+    background-color: black; /* Fondo negro */
+    margin: 0; /* Eliminar márgenes por defecto */
+    padding: 0; /* Eliminar relleno por defecto */
+    color: white; /* Opcional: texto blanco para que sea legible */
+}

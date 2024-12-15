@@ -1,0 +1,163 @@
+/* Contenedor principal */
+.banner {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Slider */
+.banner .slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 60s linear infinite;
+    animation-play-state: running; /* Inicia con la animación en ejecución */
+    z-index: 2;
+}
+
+
+
+/* Detener la animación cuando el puntero esté sobre el slider */
+.banner .slider:hover {
+    animation-play-state: paused; /* Pausa la animación al pasar el mouse */
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(500px);
+}
+
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilo para mostrar el nombre del personaje al pasar el mouse */
+.character-name {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 5px;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .slider .item {
+    position: relative; /* Para que el nombre se posicione encima de la imagen */
+  }
+
+  /* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .character-name {
+        font-size: 1.2em;
+        padding: 8px;
+    }
+}
+
+/* Ajuste aún más pequeño para móviles */
+@media (max-width: 480px) {
+    .character-name {
+        font-size: 1em;
+        padding: 6px;
+    }
+}
+  
+
+/* Botones de navegación */
+/* Estilo de los botones de navegación */
+.navigation {
+    position: absolute;
+    bottom: 20px; /* Fija los botones al fondo de .banner */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    z-index: 3; /* Asegura que los botones estén sobre el slider */
+}
+
+/* Ajuste para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .navigation {
+        gap: 10px; /* Reduce el espacio entre botones */
+    }
+
+    .navigation button {
+        padding: 10px 20px; /* Reduce el tamaño del botón */
+        font-size: 0.9em;
+    }
+}
+
+/* Ajuste aún más pequeño para móviles */
+@media (max-width: 480px) {
+    .navigation {
+        flex-direction: column; /* Cambia la disposición de los botones a vertical */
+        bottom: 10px;
+    }
+
+    .navigation button {
+        width: 100%; /* Los botones ocupan todo el ancho */
+        margin-bottom: 10px; /* Espacio entre botones */
+    }
+}
+
+/* Estilo base de los botones */
+.navigation button {
+    background-color: #007bff; /* Color azul de fondo */
+    color: white;
+    border: none;
+    padding: 12px 25px; /* Tamaño del botón */
+    border-radius: 30px; /* Bordes redondeados */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: all 0.3s ease; /* Transición suave para efectos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Efecto al pasar el mouse (hover) */
+.navigation button:hover:not(:disabled) {
+    background-color: #0056b3; /* Cambiar a un azul más oscuro */
+    transform: translateY(-3px); /* Elevar el botón ligeramente */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+/* Efecto cuando el botón está deshabilitado */
+.navigation button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+    box-shadow: none; /* Elimina la sombra al estar deshabilitado */
+}
+
+/* Efecto de enfoque en los botones */
+.navigation button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8); /* Sombra azul al hacer clic */
+}
+
