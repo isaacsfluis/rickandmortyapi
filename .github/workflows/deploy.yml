@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Especificar la versión de Ubuntu para evitar problemas con la futura actualización a Ubuntu 24.04.
 
     steps:
       - name: Checkout repo
@@ -16,9 +16,11 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Especificar la versión de Node.js, cámbiala si tu proyecto usa otra versión.
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: npm install  # Usar el comando estándar de npm en vez de una acción externa.
 
       - name: Build project
         run: npm run build
@@ -32,8 +34,7 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04  # También aseguramos que el job de despliegue use la misma versión de Ubuntu.
 
     steps:
       - name: Download artifact
