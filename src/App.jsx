@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchData } from "./services/api";
+import { fetchData } from "./services/Api.js";
 import Slider from "./components/Slider";
 import Navigation from "./components/Navigation";
 import CharacterDetails from "./components/CharacterDetails";
